@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
+import ru.job4j.accident.repository.AccidentJdbcTemplateRepository;
 
 @Service
 @RequiredArgsConstructor
 public class AccidentJdbcService {
 
-    private final AccidentJdbcTemplate jdbcTemplate;
+    private final AccidentJdbcTemplateRepository jdbcTemplate;
 
     public Accident addAccident(Accident accident, String[] ruleIds) {
         return jdbcTemplate.save(accident, ruleIds);

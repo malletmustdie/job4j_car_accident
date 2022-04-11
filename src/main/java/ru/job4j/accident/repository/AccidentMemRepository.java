@@ -12,7 +12,7 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
 @Repository
-public class AccidentMem {
+public class AccidentMemRepository {
 
     private static final AtomicInteger ACCIDENT_ID = new AtomicInteger(4);
 
@@ -22,7 +22,7 @@ public class AccidentMem {
 
     private final HashMap<Integer, Rule> accidentRules = new HashMap<>();
 
-    public AccidentMem() {
+    public AccidentMemRepository() {
         accidents.put(1, Accident.builder()
                                  .id(1)
                                  .name("ДТП")

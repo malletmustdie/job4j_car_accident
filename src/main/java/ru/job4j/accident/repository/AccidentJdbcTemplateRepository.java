@@ -24,7 +24,7 @@ import ru.job4j.accident.model.Rule;
 
 @Repository
 @RequiredArgsConstructor
-public class AccidentJdbcTemplate {
+public class AccidentJdbcTemplateRepository {
 
     private static final String FIND_ALL_ACCIDENTS_QUERY =
             "select a.id, a.name, a.text, a.address, "

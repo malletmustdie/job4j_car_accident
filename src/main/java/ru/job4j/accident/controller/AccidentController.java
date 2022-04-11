@@ -9,19 +9,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.service.AccidentJdbcService;
+import ru.job4j.accident.dto.AccidentDto;
+import ru.job4j.accident.service.AccidentRuleService;
+import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accident.service.AccidentTypeService;
 
 @Controller
 @RequiredArgsConstructor
 public class AccidentController {
 
-    private final AccidentJdbcService accidentJdbcService;
+    private final AccidentService accidentService;
+
+    private final AccidentTypeService accidentTypeService;
+
+    private final AccidentRuleService accidentRuleService;
 
     @GetMapping("/create")
     public String create(Model model) {
-        var accidentTypes = accidentJdbcService.findAllAccidentTypes();
-        var accidentRules = accidentJdbcService.findAllAccidentRules();
+        var accidentTypes = accidentTypeService.findAllAccidentTypes();
+        var accidentRules = accidentRuleService.findAllAccidentRules();
         model.addAttribute("types", accidentTypes);
         model.addAttribute("rules", accidentRules);
         return "accident/create";
@@ -29,31 +35,31 @@ public class AccidentController {
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") Integer id, Model model) {
-        var accident = accidentJdbcService.findAccidentById(id);
-        var accidentTypes = accidentJdbcService.findAllAccidentTypes();
+        var accidentDto = accidentService.findAccidentById(id);
+        var accidentTypes = accidentTypeService.findAllAccidentTypes();
         model.addAttribute("types", accidentTypes);
-        model.addAttribute("accident", accident);
+        model.addAttribute("accident", accidentDto);
         return "accident/update";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Accident accident, HttpServletRequest request) {
-        var accidentType = accidentJdbcService.findAccidentTypeById(
+    public String save(@ModelAttribute AccidentDto accident, HttpServletRequest request) {
+        var accidentType = accidentTypeService.findAccidentTypeById(
                 Integer.parseInt(request.getParameter("type.id"))
         );
         var accidentRules = request.getParameterValues("ruleIds");
         accident.setAccidentType(accidentType);
-        accidentJdbcService.addAccident(accident, accidentRules);
+        accidentService.addAccident(accident, accidentRules);
         return "redirect:/";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Accident accident, HttpServletRequest request) {
-        var accidentType = accidentJdbcService.findAccidentTypeById(
+    public String update(@ModelAttribute AccidentDto accident, HttpServletRequest request) {
+        var accidentType = accidentTypeService.findAccidentTypeById(
                 Integer.parseInt(request.getParameter("type.id"))
         );
         accident.setAccidentType(accidentType);
-        accidentJdbcService.updateAccident(accident);
+        accidentService.updateAccident(accident);
         return "redirect:/";
     }
 

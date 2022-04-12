@@ -24,27 +24,13 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <body>
 <div class="container pt-3">
-    <div class="container">
-        <div class="row">
-            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-                <span th:text="${errorMessage}"></span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-item nav-link" th:href="@{/reg}">Регистрация</a>
-            </li>
-        </ul>
-    </div>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Авторизация
+                Регистрация
             </div>
             <div class="card-body">
-                <form th:action="@{/login}" method="POST">
+                <form th:action="@{/reg}" method="POST">
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="username"
@@ -56,7 +42,7 @@
                                placeholder="Enter your password">
                     </div>
                     <button type="submit" class="btn btn-primary">Войти</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
             </div>
         </div>

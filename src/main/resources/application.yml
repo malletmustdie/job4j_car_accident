@@ -4,8 +4,11 @@ spring:
     username: postgres
     password: pass
     driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
   jpa:
     properties.hibernate:
       show_sql: true
       format_sql: true
       hbm2ddl.auto: validate
+

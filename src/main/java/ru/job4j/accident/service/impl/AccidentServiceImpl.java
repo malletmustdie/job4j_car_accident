@@ -49,12 +49,14 @@ public class AccidentServiceImpl implements AccidentService {
     }
 
     @Override
+    @Transactional
     public AccidentDto findAccidentById(Integer id) {
         return accidentMapper.map(accidentRepository.findById(id)
                                                     .orElse(null));
     }
 
     @Override
+    @Transactional
     public List<Accident> findAllAccidents() {
         return accidentRepository.findAll();
     }

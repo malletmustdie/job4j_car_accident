@@ -19,10 +19,12 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         List<Accident> accidents = accidentService.findAllAccidents();
-        model.addAttribute("user",
-                           SecurityContextHolder.getContext()
-                                                .getAuthentication()
-                                                .getPrincipal());
+        model.addAttribute(
+                "user",
+                SecurityContextHolder.getContext()
+                                     .getAuthentication()
+                                     .getPrincipal()
+        );
         model.addAttribute("accidents", accidents);
         return "index";
     }

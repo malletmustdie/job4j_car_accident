@@ -1,26 +1,32 @@
 package ru.job4j.accident.config;
 
+import javax.sql.DataSource;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurity extends WebSecurityConfigurerAdapter {
+@RequiredArgsConstructor
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        var passwordEncoder = this.passwordEncoder();
-        auth.inMemoryAuthentication()
-            .passwordEncoder(passwordEncoder)
-            .withUser("user").password(passwordEncoder.encode("123456")).roles("USER")
-            .and()
-            .withUser("admin").password(passwordEncoder.encode("123456")).roles("USER", "ADMIN");
+        auth.jdbcAuthentication()
+            .dataSource(dataSource)
+            .withUser(User.withUsername("user")
+                          .password(passwordEncoder().encode("123456"))
+                          .roles("USER"));
     }
 
     @Bean

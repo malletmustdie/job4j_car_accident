@@ -20,22 +20,31 @@
 
     <title>Accident</title>
 </head>
-
 <body>
-
 <div class="container">
-    <div class="row">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-item nav-link" th:href="@{/login}">Логин</a>
-                <a class="nav-item nav-link" th:href="@{/create}">Добавить инцидент</a>
+    <div class="col">
+        <ul class="nav float-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark"
+                   href="#"
+                   id="navbarDDMenu"
+                   role="button"
+                   data-toggle="dropdown"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <span th:text="${user.username}"></span>
+                </a>
+                <div class="dropdown-menu text-center" aria-labelledby="navbarDDMenu">
+                    <a class="nav-item nav-link" th:href="@{/create}">Добавить инцидент</a>
+                    <a class="nav-item nav-link" th:href="@{/logout}">Выйти</a>
+                </div>
             </li>
         </ul>
     </div>
 </div>
 <div class="container pt-3">
     <div class="row">
-        <div class="card" style="width: 100%">
+        <div class="card" style="width: 100%; margin-top: 25px">
             <div class="card-header">
                 Таблица с текущими правонарушениями
             </div>
@@ -48,7 +57,9 @@
                         <th scope="col">Статья правонарушения</th>
                         <th scope="col">Описание</th>
                         <th scope="col">Адрес</th>
-                        <th scope="col"></th>
+                        <th>
+                            <i class="fa fa-pencil-square-o" title="Редактировать"></i>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,7 +74,9 @@
                         <td th:text="${accident.text}"/>
                         <td th:text="${accident.address}"/>
                         <td>
-                            <a th:href="@{/edit(id=${accident.id})}">Edit</a>
+                            <a th:href="@{/edit(id=${accident.id})}">
+                                <i class="fa fa-pencil-square-o" title="Редактировать инцидент..."></i>
+                            </a>
                         </td>
                     </tr>
                     </tbody>
@@ -72,6 +85,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

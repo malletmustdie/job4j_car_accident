@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.job4j.accident.TestDataFactory;
+import ru.job4j.accident.annotation.UnitTest;
 import ru.job4j.accident.mapper.AccidentMapper;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
@@ -19,7 +20,7 @@ import ru.job4j.accident.repository.AccidentRepository;
 import ru.job4j.accident.repository.AccidentRuleRepository;
 import ru.job4j.accident.service.AccidentService;
 
-@SpringBootTest
+@UnitTest
 class AccidentServiceImplTest {
 
     @Autowired

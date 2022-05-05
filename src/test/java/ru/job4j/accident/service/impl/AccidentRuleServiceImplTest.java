@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import ru.job4j.accident.TestDataFactory;
+import ru.job4j.accident.annotation.UnitTest;
 import ru.job4j.accident.repository.AccidentRuleRepository;
 import ru.job4j.accident.service.AccidentRuleService;
 
-@SpringBootTest
+@UnitTest
 class AccidentRuleServiceImplTest {
 
     @Autowired

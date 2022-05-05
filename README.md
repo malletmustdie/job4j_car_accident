@@ -1,3 +1,6 @@
+[![Build Status](https://app.travis-ci.com/malletmustdie/job4j_car_accident.svg?branch=master)](https://app.travis-ci.com/malletmustdie/job4j_car_accident)
+[![codecov](https://codecov.io/gh/malletmustdie/job4j_car_accident/branch/master/graph/badge.svg?token=H866UF4II0)](https://codecov.io/gh/malletmustdie/job4j_car_accident)
+
 # Автонарушители
 + [Описание](#Описание-проекта)
 + [Технологии](#Используемые-технологии)

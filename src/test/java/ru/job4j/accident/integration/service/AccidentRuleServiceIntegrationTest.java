@@ -3,9 +3,7 @@ package ru.job4j.accident.integration.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.job4j.accident.TestDataFactory;
 import ru.job4j.accident.annotation.IntegrationTest;
-import ru.job4j.accident.repository.AccidentRuleRepository;
 import ru.job4j.accident.service.AccidentRuleService;
 
 @IntegrationTest

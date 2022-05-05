@@ -4,11 +4,10 @@ jdk:
 
 sudo: false
 
-after_success:
-  - bash <(curl -Os https://uploader.codecov.io/latest/ linux /codecov
+script: "mvn cobertura:cobertura"
 
-    chmod +x codecov
-    ./codecov)
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:

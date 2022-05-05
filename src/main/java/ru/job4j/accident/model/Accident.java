@@ -10,8 +10,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +51,7 @@ public class Accident {
             joinColumns = @JoinColumn(name = "accident_id"),
             inverseJoinColumns = @JoinColumn(name = "rule_id")
     )
-    private Set<Rule> rules = new HashSet<>();
+    private List<Rule> rules = new ArrayList<>();
 
     public void addRule(Rule rule) {
         this.rules.add(rule);

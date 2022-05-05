@@ -2,6 +2,7 @@ package ru.job4j.accident.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class RegController {
         return "reg";
     }
 
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = DataIntegrityViolationException.class)
     public String exceptionHandler(Exception e) {
         log.error(e.getMessage());
         return "redirect:/reg?error=true";

@@ -1,7 +1,7 @@
 package ru.job4j.accident.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -51,7 +51,7 @@ public class AccidentMemService {
     }
 
     private void setRulesOnAccident(Accident accident, String[] ruleIds) {
-        accident.setRules(new HashSet<>());
+        accident.setRules(new ArrayList<>());
         Arrays.stream(ruleIds)
               .map(id -> accidentMem.getAccidentRule(Integer.parseInt(id)))
               .forEachOrdered(accident::addRule);

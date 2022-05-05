@@ -7,7 +7,7 @@ import ru.job4j.accident.model.Accident;
 
 public interface AccidentService {
 
-    void addAccident(AccidentDto accidentDto, String[] ruleIds);
+    Accident addAccident(AccidentDto accidentDto, String[] ruleIds);
 
     void updateAccident(AccidentDto accidentDto);
 

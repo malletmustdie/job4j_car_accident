@@ -3,7 +3,6 @@ package ru.job4j.accident.repository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Repository;
@@ -32,7 +31,7 @@ public class AccidentMemRepository {
                                                            .id(1)
                                                            .name("Две машины")
                                                            .build())
-                                 .rules(Set.of(Rule.builder()
+                                 .rules(List.of(Rule.builder()
                                                    .id(2)
                                                    .name("Статья. 2")
                                                    .build()))
@@ -46,7 +45,7 @@ public class AccidentMemRepository {
                                                            .id(2)
                                                            .name("Машина и человек")
                                                            .build())
-                                 .rules(Set.of(
+                                 .rules(List.of(
                                          Rule.builder()
                                              .id(1)
                                              .name("Статья. 1")
@@ -65,7 +64,7 @@ public class AccidentMemRepository {
                                                            .id(3)
                                                            .name("Машина и велосипед")
                                                            .build())
-                                 .rules(Set.of(
+                                 .rules(List.of(
                                          Rule.builder()
                                              .id(1)
                                              .name("Статья. 1")

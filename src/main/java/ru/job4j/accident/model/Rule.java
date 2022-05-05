@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +35,6 @@ public class Rule {
     @EqualsAndHashCode.Exclude
     @Builder.Default
     @ManyToMany(mappedBy = "rules")
-    private Set<Accident> accidents = new HashSet<>();
+    private List<Accident> accidents = new ArrayList<>();
 
 }

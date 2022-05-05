@@ -1,4 +1,4 @@
-package ru.job4j.accident.service;
+package ru.job4j.accident.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import ru.job4j.accident.dto.UserDto;
 import ru.job4j.accident.mapper.UserMapper;
 import ru.job4j.accident.model.User;
 import ru.job4j.accident.repository.UserRepository;
+import ru.job4j.accident.service.UserService;
 
 @Service
 @RequiredArgsConstructor

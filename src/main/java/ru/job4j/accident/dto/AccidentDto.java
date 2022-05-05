@@ -1,6 +1,6 @@
 package ru.job4j.accident.dto;
 
-import java.util.Set;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +23,6 @@ public class AccidentDto {
 
     private AccidentType accidentType;
 
-    private Set<Rule> rules;
+    private List<Rule> rules;
 
 }

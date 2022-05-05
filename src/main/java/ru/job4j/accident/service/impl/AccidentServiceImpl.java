@@ -25,25 +25,26 @@ public class AccidentServiceImpl implements AccidentService {
 
     @Override
     @Transactional
-    public void addAccident(AccidentDto accidentDto, String[] ruleIds) {
+    public Accident addAccident(AccidentDto accidentDto, String[] ruleIds) {
         Accident accident = accidentMapper.map(accidentDto);
         Accident savedAccident = accidentRepository.save(accident);
         Arrays.stream(ruleIds)
               .map(id -> accidentRuleRepository.findById(Integer.parseInt(id)).orElse(null))
               .forEach(savedAccident::addRule);
+        return savedAccident;
     }
 
     @Override
     @Transactional
     public void updateAccident(AccidentDto accidentDto) {
-        Accident accident = accidentMapper.map(accidentDto);
-        accidentRepository.findById(accident.getId())
+        var accidentEntity = accidentMapper.map(accidentDto);
+        accidentRepository.findById(accidentEntity.getId())
                           .ifPresent(accidentFromDb -> {
-                              accidentFromDb.setName(accident.getName());
-                              accidentFromDb.setText(accident.getText());
-                              accidentFromDb.setAddress(accident.getAddress());
-                              accidentFromDb.setAccidentType(accident.getAccidentType());
-                              accidentFromDb.getRules().forEach(accidentFromDb::addRule);
+                              accidentFromDb.setName(accidentEntity.getName());
+                              accidentFromDb.setText(accidentEntity.getText());
+                              accidentFromDb.setAddress(accidentEntity.getAddress());
+                              accidentFromDb.setAccidentType(accidentEntity.getAccidentType());
+                              accidentFromDb.getRules().addAll(accidentEntity.getRules());
                               accidentRepository.save(accidentFromDb);
                           });
     }
@@ -51,8 +52,9 @@ public class AccidentServiceImpl implements AccidentService {
     @Override
     @Transactional
     public AccidentDto findAccidentById(Integer id) {
-        return accidentMapper.map(accidentRepository.findById(id)
-                                                    .orElse(null));
+        return accidentRepository.findById(id)
+                                 .map(accidentMapper::map)
+                                 .orElse(null);
     }
 
     @Override

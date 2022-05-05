@@ -3,6 +3,7 @@ package ru.job4j.accident.repository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -164,7 +165,7 @@ public class AccidentJdbcTemplateRepository {
                                                         .name(resultSet.getString("type_name"))
                                                         .build()
                                     )
-                                    .rules(new HashSet<>())
+                                    .rules(new ArrayList<>())
                                     .build();
                     result.putIfAbsent(accident.getId(), accident);
                     result.get(accident.getId())

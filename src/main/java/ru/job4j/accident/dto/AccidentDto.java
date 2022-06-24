@@ -1,5 +1,8 @@
 package ru.job4j.accident.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -15,10 +18,14 @@ public class AccidentDto {
 
     private Integer id;
 
+    @NotBlank(message = "Название инцидента не должно быть пустым!")
     private String name;
 
+    @NotBlank(message = "Описание инцидента не должно быть пустым!")
+    @Size(min = 10, message = "Описание инцидента должно содержать минимум 10 символов!")
     private String text;
 
+    @NotBlank(message = "Адрес инцидента не должен быть пустым")
     private String address;
 
     private AccidentType accidentType;

@@ -77,6 +77,14 @@
                                     <button type="submit" class="btn btn-primary">Сохранить</button>
                                 </div>
                             </div>
+                            <div>
+                                <label class="col-form-label col-sm-3" style="font-weight: 900"></label>
+                                <div th:if="${errors}">
+                                    <p style="color: red"
+                                       th:each="error : ${errors}"
+                                       th:text="${error.defaultMessage}">Error message</p>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
